@@ -1,11 +1,11 @@
 <template>
-  <sk.SkButton color="222" @onClick="demo('s')" debounceTime="2000">
+  <SkButton color="222" @onClick="demo('s')" debounceTime="2000">
     shuj
-  </sk.SkButton>
+  </SkButton>
   2
 </template>
 <script setup lang="ts">
-import  sk  from './components/index';
+import { SkButton } from './components/index';
 
 function demo(value: any) {
   console.log(value)
