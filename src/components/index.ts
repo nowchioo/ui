@@ -1,11 +1,7 @@
-import { SkButton } from "./button";
-
-
-
+import SkButton from "./button";
 const components = [
     SkButton
 ];
-
 const install = function (Vue: any, opts = {}) {
     components.forEach(component => {
         Vue.component(component.name, component);

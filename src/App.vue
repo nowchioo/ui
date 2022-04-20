@@ -1,5 +1,5 @@
 <template>
-  <SkButton color="222" @onClick="demo('s')" debounceTime="2000">
+  <SkButton color="222" @onClick="demo('s')" :debounceTime="2000"  size="2">
     shuj
   </SkButton>
   2
