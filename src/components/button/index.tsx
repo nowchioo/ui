@@ -1,9 +1,9 @@
 // event.js
-import styles from "./index.module.less";
+import "./index.less";
 import { component } from "@/interface/vue";
 import { defineComponent, onMounted, onUnmounted } from "vue";
-name: "SkButton";
-enum size {
+
+enum sizeList {
   "normal",
   "small",
   "large",
@@ -12,9 +12,10 @@ interface props {
   color?: string;
   onClick?: any;
   debounceTime?: number | string;
-  size?: size | string;
+  size?: sizeList | string;
 }
-const SkButton = defineComponent({
+const EmButton = defineComponent({
+  name: "EmButton",
   props: {
     debounceTime: {
       type: [Number, String],
@@ -48,10 +49,10 @@ const SkButton = defineComponent({
       };
     }
     return () => (
-      <div class={styles["button"]} onClick={debounce(Number(debounceTime))}>
+      <div class="em-button" onClick={debounce(Number(debounceTime))}>
         {slots}
       </div>
     );
   },
 });
-export default SkButton;
+export default EmButton;

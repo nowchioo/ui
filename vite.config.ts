@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-// import vueJsx from '@vue/babel-plugin-jsx'
+import vueJsx from '@vue/babel-plugin-jsx'
 
 const pathResolve = (dir: string): any => {
   return resolve(__dirname, ".", dir)
@@ -12,16 +12,18 @@ const alias: Record<string, string> = {
 export default defineConfig({
   plugins: [
     vue(),
-    // vueJsx('')
+    vueJsx({})
   ],
   resolve: {
     alias
   },
+  /* 未所有模块导入h函数 */
   esbuild: {
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
     jsxInject: "import { h } from 'vue';"
   },
+
   css: {
     modules: {
       generateScopedName: '[local]__[hash:base64:5]',
@@ -36,6 +38,23 @@ export default defineConfig({
         javascriptEnabled: true,
       }
     }
+  },
+
+  build: {
+    rollupOptions: {
+      // 请确保外部化那些你的库中不需要的依赖
+      external: ['vue'],
+      output: {
+        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
+    lib: {
+      entry: './src/index.ts',
+      name: 'vue3Compontents',
+    },
   },
 })
 /* 
