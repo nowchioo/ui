@@ -3,7 +3,8 @@
     <div>222</div>
   </em-button>
   <EmInput v-model="moudel" @change="demo" style="width: 180px;height: 30px;">
-
+  <div>2</div>
+  <template #icon>122</template>
   </EmInput>
 </template>
 <script setup lang="ts">

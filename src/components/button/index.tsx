@@ -50,7 +50,7 @@ const EmButton = defineComponent({
     }
     return () => (
       <div class="em-button" onClick={debounce(Number(debounceTime))}>
-        {slots}
+        {slots.default()}
       </div>
     );
   },

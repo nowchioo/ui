@@ -28,7 +28,7 @@ const EmInput = defineComponent({
   },
   /* 在此处解构props会导致被解构的响应数据发生不可预计的错误 */
   setup(props, { slots, attrs, emit }: component) {
-      console.log(slots,'slots')
+      
     let className = `em-input ${props.disabled ? " em-input-disabled" : ""}${
       props.class
     }`;
@@ -53,7 +53,8 @@ const EmInput = defineComponent({
           style={props.style}
           onChange={change}
         ></input>
-        {/* {slots} */}
+        {slots.default()}
+        {slots.icon?slots.icon():''}
       </div>
     );
   },
