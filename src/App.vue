@@ -1,10 +1,11 @@
 <template>
-  <em-button color="222" @onClick="demo('s')" :debounceTime="2000" size="2">
+  <em-button color="222" @onClick="demo('s')" :throttleTime="2000" size="2">
     <div>222</div>
   </em-button>
-  <EmInput v-model="moudel" @change="demo" style="width: 180px;height: 30px;">
-  <div>2</div>
-  <template #icon>122</template>
+  <EmInput v-model="moudel" @change="demo" type="password" style="width: 180px;height: 30px;" maxlength="10" showPassword>
+
+    <!-- <template #prefix><span class="iconfont icon-peoplelist"></span></template>
+    <template #suffix><span class="iconfont icon-search"></span></template> -->
   </EmInput>
 </template>
 <script setup lang="ts">

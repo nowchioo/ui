@@ -3,7 +3,6 @@ const components = [
     EmButton
 ];
 const install = function (Vue: any, opts = {}) {
-    console.log(components,'components')
     components.forEach(component => {
         Vue.component(component.name, component);
     });

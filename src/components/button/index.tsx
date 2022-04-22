@@ -2,6 +2,7 @@
 import "./index.less";
 import { component } from "@/interface/vue";
 import { defineComponent, onMounted, onUnmounted } from "vue";
+import { throttle } from "@/utils/method/common";
 
 enum sizeList {
   "normal",
@@ -11,13 +12,13 @@ enum sizeList {
 interface props {
   color?: string;
   onClick?: any;
-  debounceTime?: number | string;
+  throttleTime?: number | string;
   size?: sizeList | string;
 }
 const EmButton = defineComponent({
   name: "EmButton",
   props: {
-    debounceTime: {
+    throttleTime: {
       type: [Number, String],
       default: 0,
     },
@@ -31,25 +32,22 @@ const EmButton = defineComponent({
     },
   },
   setup(
-    { debounceTime, size, color }: props,
+    props: props,
     { slots, emit, attrs }: component
   ) {
     onMounted(() => {});
     onUnmounted(() => {});
 
-    function debounce(interval: number) {
-      let time = new Date().getTime();
-      return function () {
-        let now = new Date().getTime();
-        if (now - interval > time) {
-          emit("onClick");
-          time = now;
-        } else {
-        }
-      };
-    }
     return () => (
-      <div class="em-button" onClick={debounce(Number(debounceTime))}>
+      <div
+      {...props}
+        class="em-button"
+        onClick={
+          props.throttleTime == 0
+            ? () => emit("onClick")
+            : throttle(Number(props.throttleTime), emit, "onClick")
+        }
+      >
         {slots.default()}
       </div>
     );
